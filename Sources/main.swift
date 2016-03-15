@@ -9,6 +9,8 @@
 import Foundation
 import Vapor
 
+public let VERSION = "1.0.0"
+
 /*
  token=GLtqZxRlry3UpVW1chQeTPEk
  team_id=T0001
@@ -320,11 +322,29 @@ public final class MemeAction: Action {
     }
 }
 
+// MARK: Debug
+
+public final class DebugAction: Action {
+    public func supports(slack: SlackRequest) -> Bool {
+        return slack.arguments.first == "debug"
+    }
+    
+    public func handle(slack: SlackRequest) -> SlackResponse {
+        var msg = "Hi, I'm bot-bot!\n"
+        msg += "Version: \(VERSION)\n\n"
+        msg += "\(slack)"
+        return SlackResponse(text: msg,
+                             responseType: .Ephemeral,
+                             attachments: nil)
+    }
+}
+
 // MARK: Add new actions here to extend support
 
 let actions: [Action] = [
     helloAction,
-    MemeAction()
+    MemeAction(),
+    DebugAction()
 ]
 
 // MARK: Application
@@ -348,22 +368,6 @@ app.get("slack") { req in
         }
         .first?
         .handle(slack) ?? Failure.Unsupported
-}
-
-/**
- *  Debug Requests in Slack
- */
-app.get("slack-debug") { req in
-    let slack = SlackRequest(request: req)
-    
-    var msg = "Hi, I'm randy-bot!\n"
-    msg += "\(slack)"
-    
-    let js: Json = [
-        "response_type": "in_channel",
-        "text" : Json(msg)
-    ]
-    return js
 }
 
 app.start(port: 9090)
