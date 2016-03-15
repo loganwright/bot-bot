@@ -153,14 +153,19 @@ public struct SlackResponse: ResponseConvertible{
                     return ("thumb_url", Json(url))
                 }
             }
+            
+            func json() -> Json {
+                let (key, val) = keyValPair()
+                return Json([key : val])
+            }
         }
         
         let content: [Content]
         
         public func json() -> Json {
-            
-            
-            return .NullValue
+            return Json(
+                content.map { $0.json() }
+            )
         }
     }
     
@@ -182,9 +187,13 @@ public struct SlackResponse: ResponseConvertible{
             json["attachments"] = Json(attachments)
         }
         
-        return Response(status: .OK,
-                        data: json.serialize().utf8,
-                        contentType: .Json)
+        do {
+            return Response(status: .OK,
+                            data: try json.serialize(),
+                            contentType: .Json)
+        } catch {
+            return Failure.UnableToSerializeJson.response()
+        }
     }
 }
 
@@ -195,6 +204,7 @@ public enum Failure {
     case UnknownCommand(String)
     case UnsupportedPrime(String)
     case NoMessage
+    case UnableToSerializeJson
 }
 
 //Response
@@ -211,6 +221,8 @@ extension Failure: ResponseConvertible {
             msg = "Unable to parse prime: \(prime)"
         case .NoMessage:
             msg = "No message passed"
+        case .UnableToSerializeJson:
+            msg = "Unable to serialize Json"
         }
         
         do {
@@ -221,7 +233,7 @@ extension Failure: ResponseConvertible {
                 ]
             )
             return Response(status: .OK,
-                            data: js.serialize().utf8,
+                            data: try js.serialize(),
                             contentType: .Json)
         } catch {
             return Response(error: "Unknown Error: \(error) Message: \(msg)")

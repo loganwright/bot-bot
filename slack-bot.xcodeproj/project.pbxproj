@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80CE7C721C7BF8FB00E401F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE7C711C7BF8FB00E401F3 /* main.swift */; };
+		80F1BB081C98836A00FD21AE /* libVapor.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F1BB071C98836A00FD21AE /* libVapor.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		80CE7C651C7BF71800E401F3 /* slack-bot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "slack-bot"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CE7C711C7BF8FB00E401F3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Sources/main.swift; sourceTree = SOURCE_ROOT; };
+		80F1BB071C98836A00FD21AE /* libVapor.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libVapor.dylib; path = .build/debug/libVapor.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F1BB081C98836A00FD21AE /* libVapor.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +44,7 @@
 		80CE7C5C1C7BF71800E401F3 = {
 			isa = PBXGroup;
 			children = (
+				80F1BB071C98836A00FD21AE /* libVapor.dylib */,
 				80CE7C671C7BF71800E401F3 /* slack-bot */,
 				80CE7C661C7BF71800E401F3 /* Products */,
 			);
@@ -213,6 +217,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/.build/debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -224,6 +232,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/.build/debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/release";
 			};
