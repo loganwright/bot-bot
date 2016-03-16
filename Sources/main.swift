@@ -9,7 +9,7 @@
 import Foundation
 import Vapor
 
-public let VERSION = "1.0.1"
+public let VERSION = "1.0.2"
 
 // MARK: Add new actions here to extend support
 
