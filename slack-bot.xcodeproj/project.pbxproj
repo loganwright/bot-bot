@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		80CE7C721C7BF8FB00E401F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE7C711C7BF8FB00E401F3 /* main.swift */; };
 		80F1BB081C98836A00FD21AE /* libVapor.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F1BB071C98836A00FD21AE /* libVapor.dylib */; };
+		80F1BB131C98DF5900FD21AE /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB0A1C98DF5900FD21AE /* Action.swift */; };
+		80F1BB141C98DF5900FD21AE /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB0B1C98DF5900FD21AE /* DebugAction.swift */; };
+		80F1BB151C98DF5900FD21AE /* HelloAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB0C1C98DF5900FD21AE /* HelloAction.swift */; };
+		80F1BB161C98DF5900FD21AE /* MemeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB0D1C98DF5900FD21AE /* MemeAction.swift */; };
+		80F1BB171C98DF5900FD21AE /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB0E1C98DF5900FD21AE /* Failure.swift */; };
+		80F1BB181C98DF5900FD21AE /* SlackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB101C98DF5900FD21AE /* SlackRequest.swift */; };
+		80F1BB191C98DF5900FD21AE /* SlackResponse+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB111C98DF5900FD21AE /* SlackResponse+Attachment.swift */; };
+		80F1BB1A1C98DF5900FD21AE /* SlackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1BB121C98DF5900FD21AE /* SlackResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +35,14 @@
 		80CE7C651C7BF71800E401F3 /* slack-bot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "slack-bot"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CE7C711C7BF8FB00E401F3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Sources/main.swift; sourceTree = SOURCE_ROOT; };
 		80F1BB071C98836A00FD21AE /* libVapor.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libVapor.dylib; path = .build/debug/libVapor.dylib; sourceTree = "<group>"; };
+		80F1BB0A1C98DF5900FD21AE /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		80F1BB0B1C98DF5900FD21AE /* DebugAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
+		80F1BB0C1C98DF5900FD21AE /* HelloAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloAction.swift; sourceTree = "<group>"; };
+		80F1BB0D1C98DF5900FD21AE /* MemeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeAction.swift; sourceTree = "<group>"; };
+		80F1BB0E1C98DF5900FD21AE /* Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Failure.swift; path = Sources/Failure.swift; sourceTree = SOURCE_ROOT; };
+		80F1BB101C98DF5900FD21AE /* SlackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackRequest.swift; sourceTree = "<group>"; };
+		80F1BB111C98DF5900FD21AE /* SlackResponse+Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SlackResponse+Attachment.swift"; sourceTree = "<group>"; };
+		80F1BB121C98DF5900FD21AE /* SlackResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +77,36 @@
 		80CE7C671C7BF71800E401F3 /* slack-bot */ = {
 			isa = PBXGroup;
 			children = (
+				80F1BB091C98DF5900FD21AE /* Actions */,
+				80F1BB0E1C98DF5900FD21AE /* Failure.swift */,
+				80F1BB0F1C98DF5900FD21AE /* Slack */,
 				80CE7C711C7BF8FB00E401F3 /* main.swift */,
 			);
 			path = "slack-bot";
 			sourceTree = "<group>";
+		};
+		80F1BB091C98DF5900FD21AE /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				80F1BB0A1C98DF5900FD21AE /* Action.swift */,
+				80F1BB0B1C98DF5900FD21AE /* DebugAction.swift */,
+				80F1BB0C1C98DF5900FD21AE /* HelloAction.swift */,
+				80F1BB0D1C98DF5900FD21AE /* MemeAction.swift */,
+			);
+			name = Actions;
+			path = Sources/Actions;
+			sourceTree = SOURCE_ROOT;
+		};
+		80F1BB0F1C98DF5900FD21AE /* Slack */ = {
+			isa = PBXGroup;
+			children = (
+				80F1BB101C98DF5900FD21AE /* SlackRequest.swift */,
+				80F1BB111C98DF5900FD21AE /* SlackResponse+Attachment.swift */,
+				80F1BB121C98DF5900FD21AE /* SlackResponse.swift */,
+			);
+			name = Slack;
+			path = Sources/Slack;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -123,7 +165,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F1BB181C98DF5900FD21AE /* SlackRequest.swift in Sources */,
+				80F1BB161C98DF5900FD21AE /* MemeAction.swift in Sources */,
+				80F1BB191C98DF5900FD21AE /* SlackResponse+Attachment.swift in Sources */,
+				80F1BB1A1C98DF5900FD21AE /* SlackResponse.swift in Sources */,
 				80CE7C721C7BF8FB00E401F3 /* main.swift in Sources */,
+				80F1BB131C98DF5900FD21AE /* Action.swift in Sources */,
+				80F1BB151C98DF5900FD21AE /* HelloAction.swift in Sources */,
+				80F1BB171C98DF5900FD21AE /* Failure.swift in Sources */,
+				80F1BB141C98DF5900FD21AE /* DebugAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
