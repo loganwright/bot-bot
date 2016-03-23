@@ -58,17 +58,18 @@ public struct SlackRequest {
 extension SlackRequest: CustomStringConvertible {
     public var description: String {
         return [
-            token,
-            teamId,
-            teamDomain,
-            channelId,
-            channelName,
-            userId,
-            userName,
-            command,
-            text,
-            responseUrl
+                "token" : "****", // token
+                "team id" : teamId,
+                "team domain" : teamDomain,
+                "channel id" : channelId,
+                "channel name" : channelName,
+                "user id" : userId,
+                "user name" : userName,
+                "command" : command,
+                "text" : text,
+                "response url" : responseUrl
             ]
+            .map { key, val in "\(key) = \(val)" }
             .joinWithSeparator(",\n")
     }
 }
