@@ -66,7 +66,7 @@ extension SlackRequest: CustomStringConvertible {
                 "user id" : userId,
                 "user name" : userName,
                 "command" : command,
-                "text" : text
+                "text" : text,
                 "response url" : responseUrl
             ]
             .map { key, val in "\(key) = \(val)" }
