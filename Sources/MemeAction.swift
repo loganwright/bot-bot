@@ -6,10 +6,11 @@
 //  Copyright © 2016 loganwright. All rights reserved.
 //
 
+import Foundation
+
 public final class MemeAction: Action {
     public func supports(slack: SlackRequest) -> Bool {
-        let prime = slack.arguments.first?.lowercaseString
-        print("Got prime: \(prime)")
+        let prime = slack.arguments.first?.lowercased()
         return prime == "meme"
     }
     
@@ -17,10 +18,10 @@ public final class MemeAction: Action {
         guard
             let suffix = slack
                 .text
-                .componentsSeparatedByString(" ")
+                .componentsSeparated(by: " ")
                 .dropFirst() // Drop 'meme'
-                .joinWithSeparator(" ")
-                .stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+                .joined(separator: " ")
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed())
             else {
                 return SlackResponse(text: "Machine Broke",
                                      responseType: .InChannel,

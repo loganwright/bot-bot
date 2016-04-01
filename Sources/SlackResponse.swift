@@ -10,7 +10,13 @@ import Vapor
 
 // For a better description of the values here, look at: https://api.slack.com/docs/attachments
 
-public struct SlackResponse: ResponseConvertible{
+extension Json: JsonRepresentable {
+    public func makeJson() -> Json {
+        return self
+    }
+}
+
+public struct SlackResponse: ResponseRepresentable {
     public enum ResponseType: String {
         case InChannel = "in_channel"
         case Ephemeral = "ephemeral"
@@ -21,25 +27,19 @@ public struct SlackResponse: ResponseConvertible{
     let attachments: [Attachment]?
     
     
-    public func response() -> Response {
-        var json: Json = [:]
+    public func makeResponse() -> Response {
+        var json: [String : JsonRepresentable] = [:]
         
-        json["response_type"] = Json(responseType.rawValue)
+        json["response_type"] = responseType.rawValue
         
         if let text = text {
-            json["text"] = Json(text)
+            json["text"] = text
         }
         
         if let attachments = attachments?.map({ $0.json() }) {
-            json["attachments"] = Json(attachments)
+            json["attachments"] = Json.array(attachments)
         }
         
-        do {
-            return Response(status: .OK,
-                            data: try json.serialize(),
-                            contentType: .Json)
-        } catch {
-            return Failure.UnableToSerializeJson.response()
-        }
+        return Json(json).makeResponse()
     }
 }

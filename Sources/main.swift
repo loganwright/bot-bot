@@ -16,7 +16,8 @@ public let VERSION = "1.0.2"
 let actions: [Action] = [
     helloAction,
     MemeAction(),
-    DebugAction()
+    DebugAction(),
+    JamMatchupAction()
 ]
 
 // MARK: Application
