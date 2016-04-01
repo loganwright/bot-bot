@@ -18,8 +18,8 @@ public enum Failure {
 
 //Response
 
-extension Failure: ResponseConvertible {
-    public func response() -> Response {
+extension Failure: ResponseRepresentable {
+    public func makeResponse() -> Response {
         let msg: String
         switch self {
         case .Unsupported:
@@ -34,18 +34,12 @@ extension Failure: ResponseConvertible {
             msg = "Unable to serialize Json"
         }
         
-        do {
-            let js = try Json(
-                [
-                    "response_type": "in_channel",
-                    "text" : msg
-                ]
-            )
-            return Response(status: .OK,
-                            data: try js.serialize(),
-                            contentType: .Json)
-        } catch {
-            return Response(error: "Unknown Error: \(error) Message: \(msg)")
-        }
+        let js = Json(
+            [
+                "response_type": "in_channel",
+                "text" : msg
+            ]
+        )
+        return js.makeResponse()
     }
 }

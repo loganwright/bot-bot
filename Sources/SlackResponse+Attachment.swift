@@ -24,13 +24,13 @@ extension SlackResponse {
                 let short: Bool?
                 
                 public func json() -> Json {
-                    var js: Json = [:]
+                    var js: [String : JsonRepresentable] = [:]
                     js["title"] = Json(title)
                     js["value"] = Json(value)
                     if let short = short {
                         js["short"] = Json(short)
                     }
-                    return js
+                    return Json(js)
                 }
             }
             
@@ -76,7 +76,7 @@ extension SlackResponse {
                     return ("text", Json(text))
                 case let Fields(rawFields):
                     let fields = rawFields.map { $0.json() }
-                    return ("fields", Json(fields))
+                    return ("fields", Json.array(fields))
                 case let ImageUrl(url):
                     return ("image_url", Json(url))
                 case let ThumbUrl(url):
