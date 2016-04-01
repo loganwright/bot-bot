@@ -50,7 +50,9 @@ public struct SlackRequest {
         
         // Spaces ' ' come as '+' in message
         let raw = request.data["text"]?.string ?? "*"
-        arguments = raw.componentsSeparated(by: "+")
+        arguments = raw.characters
+            .split(separator: "+")
+            .map(String.init)
         text = arguments.joined(separator: " ")
     }
 }
