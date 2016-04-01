@@ -41,7 +41,8 @@ extension MutableCollection where Index == Int {
 
 public final class JamMatchupAction: Action {
     public func supports(slack: SlackRequest) -> Bool {
-        return slack.arguments.first == "matchup"
+        let prime = slack.arguments.first?.lowercased()
+        return prime == "matchup"
     }
     
     public func handle(slack: SlackRequest) -> SlackResponse {

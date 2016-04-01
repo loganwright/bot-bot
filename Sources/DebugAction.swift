@@ -8,7 +8,8 @@
 
 public final class DebugAction: Action {
     public func supports(slack: SlackRequest) -> Bool {
-        return slack.arguments.first == "debug"
+        return true
+//        return slack.arguments.first == "debug"
     }
     
     public func handle(slack: SlackRequest) -> SlackResponse {
