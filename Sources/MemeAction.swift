@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Vapor
 
 public final class MemeAction: Action {
     public func supports(slack: SlackRequest) -> Bool {
@@ -23,7 +24,7 @@ public final class MemeAction: Action {
                 .map(String.init)
                 .dropFirst() // Drop 'meme'
                 .joined(separator: " ")
-                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed())
+                .percentEncoded()
             else {
                 return SlackResponse(text: "Machine Broke",
                                      responseType: .InChannel,
@@ -34,5 +35,11 @@ public final class MemeAction: Action {
         let content = SlackResponse.Attachment.Content.ImageUrl(url)
         let attachment = SlackResponse.Attachment(content: [content])
         return SlackResponse(text: url, responseType: .InChannel, attachments: [attachment])
+    }
+}
+
+extension String {
+    func percentEncoded() -> String? {
+        return try? String(percentEncoded: self)
     }
 }
