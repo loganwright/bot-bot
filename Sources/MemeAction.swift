@@ -18,7 +18,9 @@ public final class MemeAction: Action {
         guard
             let suffix = slack
                 .text
-                .componentsSeparated(by: " ")
+                .characters
+                .split(separator: " ")
+                .map(String.init)
                 .dropFirst() // Drop 'meme'
                 .joined(separator: " ")
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed())

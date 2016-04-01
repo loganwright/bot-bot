@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension Sequence {
     var array: [Iterator.Element] {
         return Array(self)
@@ -15,6 +16,7 @@ extension Sequence {
 }
 
 extension Collection {
+    // http://stackoverflow.com/a/24029847/2611971f
     /// Return a copy of `self` with its elements shuffled
     func shuffle() -> [Iterator.Element] {
         var list = Array(self)
@@ -30,7 +32,7 @@ extension MutableCollection where Index == Int {
         if count < 2 { return }
         
         for i in 0..<count - 1 {
-            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            let j = Int.random(min: 0, max: count - 1)
             guard i != j else { continue }
             swap(&self[i], &self[j])
         }
